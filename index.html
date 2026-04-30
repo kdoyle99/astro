@@ -12,11 +12,7 @@
     </head>
     <body>
         <header>
-            <picture>
-                <source media="(min-width: 1440px)" srcset="images/astro-logo-xl.png">
-                <source media="(max-width: 1440px) and (min-width: 1280px)" srcset="images/astro-logo-large.png">
-                <img src="images/astro-logo-small.png" alt="Astro Drive-In Theater">
-            </picture>
+            <img src="images/astro-logo-small.png" alt="Astro Drive-In Theater" id="logo">
             <nav class="mobile-nav">
                 <input type="checkbox" id="menu-toggle" hidden>
                 <label for="menu-toggle" class="menu-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="iconBtn"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="#f25922" d="M96 160C96 142.3 110.3 128 128 128L512 128C529.7 128 544 142.3 544 160C544 177.7 529.7 192 512 192L128 192C110.3 192 96 177.7 96 160zM96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320zM544 480C544 497.7 529.7 512 512 512L128 512C110.3 512 96 497.7 96 480C96 462.3 110.3 448 128 448L512 448C529.7 448 544 462.3 544 480z"/></svg></label>
@@ -30,13 +26,15 @@
             </nav>
         </header>
         <main id="main">
-            <picture>
-                <source media="(min-width: 1440px)" srcset="images/banner-image-xl.png">
-                <source media="(max-width: 1440px) and (min-width: 1280px)" srcset="images/banner-image-large.png">
-                <source media="(max-width: 1280px) and (min-width: 744px)" srcset="images/banner-image-medium.png">
-                <img src="images/banner-image-small.png" alt="Retro drive-in theater graphic with movie playing on a big screen outside with cars parked in front.">
-            </picture>
-            <h1>Drive In. Tune In. Chill Out.</h1>
+            <div id="banner">
+                <picture>
+                    <source media="(min-width: 1440px)" srcset="images/banner-image-xl.png">
+                    <source media="(max-width: 1440px) and (min-width: 1280px)" srcset="images/banner-image-large.png">
+                    <source media="(max-width: 1280px) and (min-width: 744px)" srcset="images/banner-image-medium.png">
+                    <img src="images/banner-image-small.png" alt="Retro drive-in theater graphic with movie playing on a big screen outside with cars parked in front.">
+                </picture>
+                <h1>Drive In. Tune In. Chill Out.</h1>
+            </div>
             <section id="movies">
                 <div>
                     <h2>Now Playing</h2>
@@ -46,17 +44,25 @@
 
             </section>
             <section id="info">
-                <h3>Arrive Early</h3>
-                <p>Gates open 90 minutes before showtime.</p>
+                <section>
+                    <h3>Arrive Early</h3>
+                    <p>Gates open 90 minutes before showtime.</p>
+                </section>
+                <div class="divider line"></div>
+                <section>
+                    <h3>Tune In</h3>
+                    <p>Park, tune your radio to 87.9FM, and enjoy the show!</p>
+                </section>
                 <div class="divider"></div>
-                <h3>Tune In</h3>
-                <p>Park, tune your radio to 87.9FM, and enjoy the show!</p>
+                <section>
+                    <h3>Snack Bar</h3>
+                    <p>Hot popcorn, classic candy, ice cold drinks, and more!</p>
+                </section>
                 <div class="divider"></div>
-                <h3>Snack Bar</h3>
-                <p>Hot popcorn, classic candy, ice cold drinks, and more!</p>
-                <div class="divider"></div>
-                <h3>Under the Stars</h3>
-                <p>Good movies and the fresh air. The perfect night out.</p>
+                <section>
+                    <h3>Under the Stars</h3>
+                    <p>Good movies and the fresh air. The perfect night out.</p>
+                </section>
             </section>
         </main>
         <footer id="about">
@@ -66,7 +72,7 @@
                 <form method="POST" action=""> <!-- TO DO -->
                     <input type="email" id="email" placeholder="Enter your email">
                     <button type="submit" class="submitBtn">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="#efe6dd" d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="iconBtn"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="#efe6dd" d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"/></svg>
                     </button>
                 </form>
             </section>
@@ -82,6 +88,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="iconBtn"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="#f25922" d="M453.2 112L523.8 112L369.6 288.2L551 528L409 528L297.7 382.6L170.5 528L99.8 528L264.7 339.5L90.8 112L236.4 112L336.9 244.9L453.2 112zM428.4 485.8L467.5 485.8L215.1 152L173.1 152L428.4 485.8z"/></svg>
                 </a>
             </section>
+            <img src="images/vintage-car.png" alt="Vintage car graphic">
             <section id="small">
                 <small>&copy; 2026 Astro Drive-In Theater</small>
                 <small>123 Retro Road, Orlando, FL</small>

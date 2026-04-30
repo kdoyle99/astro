@@ -48,6 +48,7 @@ table {
 	border-spacing: 0;
 }
 
+
 /* ROOT VARIABLES */
 :root {
     --off-white: #EFE6DD;
@@ -59,7 +60,9 @@ table {
     --font-heading: "Lobster", sans-serif;
     --font-subheading: "Bebas Neue", sans-serif;
     --font-text: "Roboto Condensed", sans-serif;
+    --transition: all 0.3s ease;
 }
+
 
 /* GLOBAL/MOBILE/SMALL STYLES */
 /* TEXT */
@@ -67,7 +70,8 @@ h1 {
     font-family: var(--font-heading);
     font-size: 48px;
     color: var(--yellow);
-    -webkit-text-stroke: 0.5px black;
+    -webkit-text-stroke: 2px black;
+    paint-order: stroke fill;
     text-shadow: 0 4 15 black;
     display: none;
 }
@@ -159,6 +163,9 @@ footer p {
     max-width: 320px;
     margin: 0 auto;
 }
+footer img {
+    display: none;
+}
 form {
     display: flex;
     flex-direction: row;
@@ -183,6 +190,9 @@ form {
     display: inline-flex;
     align-items: center;
 }
+.iconBtn path, .menu li a {
+    transition: var(--transition);
+}
 .submitBtn:hover svg path {
     fill: var(--deep-space);
 }
@@ -191,14 +201,13 @@ form {
     grid-template-areas:
         "h3 h3 h3"
         "svg1 svg2 svg3";
-    column-gap: 30px;
     width: 300px;
     margin: 0 auto;
     padding-bottom: 30px;
 }
 #social h3 {
     grid-area: h3;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 }
 #social a:hover svg path {
     fill: var(--off-white);
@@ -263,10 +272,141 @@ label svg {
 
 /* MEDIA QUERIES */
 /* TABLET/MEDIUM STYLES (744PX) */
-
+@media screen and (min-width: 744px){
+    .menu-button {
+        display: none;
+    }
+    .menu {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        justify-content: space-evenly;
+        margin: 0 auto;
+        padding: 40px 0 40px 20px;
+    }
+    .menu li {
+        padding-bottom: 0;
+    }
+    .menu li a:hover {
+        margin: 0 -20px;
+    }
+    .menu li:last-of-type a{
+        background-color: var(--orange);
+        color: var(--off-white);
+        padding: 8px 30px 6px;
+        border-radius: 25px;
+        transition: var(--transition);
+        margin: 0;
+    }
+    .menu li:last-of-type a:hover {
+        background-color: var(--off-white);
+        color: var(--orange);
+        border-bottom: none;
+    }
+    #logo {
+        position: absolute;
+        z-index: 10;
+        top: 20%;
+        left: 5%;
+        margin: 0;
+    }
+    #banner {
+        position: relative;
+    }
+    h1 {
+        display: block;
+        position: absolute;
+        z-index: 5;
+        width: 100%;
+        bottom: 0;
+        text-align: center;
+        padding: 80px 0;
+        background-image: linear-gradient(to top, var(--deep-space) 10%, rgba(0, 11, 19, 0.7) 60%, rgba(0, 0, 0, 0) 100%);
+        text-shadow: 0 4px 15px black;
+    }
+    #movies div {
+        width: 700px;
+        height: 430px;
+    }
+    #info {
+        display: grid;
+        grid-template-columns: 300px 60px 300px;
+        grid-template-areas: 
+            "section1 line section2"
+            "section3 line section4";
+        justify-content: center;
+    }
+    .line {
+        grid-area: line;
+    }
+    .divider {
+        display: none;
+    }
+    .divider:first-of-type {
+        display: block;
+        height: 340px;
+        width: 1px;
+    }
+    footer {
+        display: grid;
+        grid-template-areas:
+        "form social"
+        "small small";
+    }
+    #social {
+        height: 120px;
+    }
+    #small {
+        grid-area: small;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        column-gap: 80px;
+    }
+}
 
 /* LAPTOP/LARGE STYLES (1280PX) */
-
+@media screen and (min-width: 1280px) {
+    .menu {
+        justify-content: right;
+        gap: 60px;
+        margin: 0 40px 0 0;
+    }
+    #logo {
+        max-width: 450px;
+        top: 50px;
+    }
+    #banner h1 {
+        box-sizing: border-box;
+        left: 0;
+        bottom: 3px;
+        width: 600px;
+        height: 100%;
+        background-image: linear-gradient(to right, var(--deep-space) 10%, rgba(0, 11, 19, 0.7) 60%, rgba(0, 0, 0, 0) 100%);
+        align-content: center;
+        padding: 80px 150px 0;
+        font-size: 60px;
+    }
+    #main {
+        display: grid;
+        grid-template-areas: 
+            "banner banner banner"
+            "movies movies weather"
+            "info info info";
+    }
+    #banner {
+        grid-area: banner;
+    }
+    #movies {
+        grid-area: movies;
+    }
+    #weather {
+        grid-area: weather;
+    }
+    #info {
+        grid-area: info;
+    }
+}
 
 /* DESKTOP/X-LARGE STYLES (1440PX) */
 
