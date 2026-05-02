@@ -129,6 +129,16 @@ img {
     width: 350px;
     margin: 35px auto;
 }
+#nowPlaying {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    gap: 20px;
+    padding: 10px 30px;
+}
+.subsec img {
+    width: 200px;
+}
 #weather {
     background-image: linear-gradient(to bottom, var(--light-blue) 40%, var(--off-white) 100%);
     height: 430px;
