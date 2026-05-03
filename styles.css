@@ -75,7 +75,7 @@ h1 {
     text-shadow: 0 4px 15px black;
     display: none;
 }
-h2, h3, h4, nav a {
+h2, h3, h4, nav a, #temp {
     font-family: var(--font-subheading);
 }
 h2 {
@@ -84,11 +84,20 @@ h2 {
 h3 {
     font-size: 30px;
 }
-h4, nav a, p, input {
+h4, nav a, p, input, dt, dd {
     font-size: 24px;
 }
-p, input, small {
+p, input, small, dt, dd {
     font-family: var(--font-text);
+}
+#weather h3, #weather p, dd {
+    color: var(--dark-blue);
+}
+#temp {
+    font-size: 100px;
+}
+dd {
+    text-transform: capitalize;
 }
 small {
     font-size: 16px;
@@ -130,6 +139,7 @@ img {
     margin: 35px auto;
 }
 #nowPlaying {
+    width: 90%;
     display: flex;
     flex-direction: row;
     overflow: hidden;
@@ -137,11 +147,41 @@ img {
     padding: 10px 30px;
 }
 .subsec img {
-    width: 200px;
+    width: 250px;
 }
 #weather {
     background-image: linear-gradient(to bottom, var(--light-blue) 40%, var(--off-white) 100%);
     height: 430px;
+    text-align: center;
+}
+#weather h2 {
+    padding: 30px 0 10px;
+}
+#weather svg {
+    width: 16px;
+    padding-right: 10px;
+}
+#weather div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100;
+}
+#weather div p {
+    color: var(--off-white);
+    padding: 30px 0 20px;
+}
+dl {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr;
+    column-gap: 10px;
+}
+dt {
+    text-align: right;
+    font-weight: 700;
+}
+dd {
+    text-align: left;
 }
 #info {
     background-color: var(--off-white);
