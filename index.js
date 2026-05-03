@@ -1,4 +1,11 @@
-// Movie database Ajax/API
+// AJAX/API & SLIDESHOW/CAROUSEL
+// CURRENT DATE VARIABLES
+let today = new Date();
+let month = today.toLocaleString('default', { month: 'short' });
+let day = today.getDate();
+let dateFormat = `${month} ${day}`;
+
+// NOW PLAYING MOVIES
 $(function() {
     // Display movies in #nowPlaying
     let newMovies = $("#nowPlaying");
@@ -20,22 +27,79 @@ $(function() {
 		// Build output in empty string
 		let html = "";
 
-        console.log(data);
+        // console.log(data);
 
-        // Display movie posters for movies that are now playing
+        // Display movie posters for movies that are now playing for the week
 		for(let i = 0; i < 7; i++){
+			// Start with today's date
+			let movieDate = new Date(today);
+
+			// Change date for each movie
+			movieDate.setDate(today.getDate() + i);
+
+			// Format movie date
+			let movieDateFormat = new Intl.DateTimeFormat('en-US', {
+				weekday: 'short',
+				month: 'short',
+				day: 'numeric'
+			}).format(movieDate);
+
+
+			// Set movie showtime
+			let showtime = "9:00 PM";
+
 			html += `
-				<section class="movie subsec">
+				<div class="movie subsec">
 					<img src="${imgUrl}${data.results[i].poster_path}" alt="${data.results[i].title}">
-				</section>`;
+					<p class="movie-date">${movieDateFormat}</p>
+					<p class="movie-time">${showtime}</p>
+				</div>`;
 		}
 
 	    // Add the HTML string to the page
         newMovies.html(html);
+
+		// Initialize carousel
+    	$("#nowPlaying").slick({
+			// Default to one movie poster for mobile
+			mobileFirst: true,
+        	slidesToShow: 1,
+			slidesToScroll: 1,
+			arrows: true,
+
+			// Add custom arrow buttons
+			prevArrow: `
+				<button class="slick-prev custom-arrow" aria-label="Previous">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="#f25922" d="M7.7 235.8c-10.3 12.6-9.5 31.1 2.2 42.8l128 128c9.2 9.2 22.9 11.9 34.9 6.9s19.8-16.6 19.8-29.6l0-256c0-12.9-7.8-24.6-19.8-29.6s-25.7-2.2-34.9 6.9l-128 128-2.2 2.4z"/></svg>
+				</button>`,
+			nextArrow: `
+				<button class="slick-next custom-arrow" aria-label="Next">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 512"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="#f25922" d="M249.3 235.8c10.2 12.6 9.5 31.1-2.2 42.8l-128 128c-9.2 9.2-22.9 11.9-34.9 6.9S64.5 396.9 64.5 384l0-256c0-12.9 7.8-24.6 19.8-29.6s25.7-2.2 34.9 6.9l128 128 2.2 2.4z"/></svg>
+				</button>`,
+
+			// Responsive styles
+			responsive: [
+				//Tablet/Laptop
+				{
+					breakpoint: 743,
+					settings: {
+						slidesToShow: 3
+					}
+				},
+
+				// Desktop
+				{
+					breakpoint: 1439,
+					settings: {
+						slidesToShow: 4
+					}
+				}
+			]
+   		 });
     });
 });
 
-// Weather API
+// WEATHER INFO
 function getWeather() {
 	// Grab #weather section to display weather information
 	let weatherSection = document.getElementById("weather");
@@ -63,12 +127,6 @@ function getWeather() {
 	xhr.addEventListener("load", function(){
 		// For successful response, display weather
 		if(this.status == 200){
-			// Get current date
-			let today = new Date();
-			let month = today.toLocaleString('default', { month: 'short' });
-			let day = today.getDate();
-			let dateFormat = `${month} ${day}`;
-			
 			// Get sunset time
 			ms = this.response.sys.sunset * 1000;
 			let set = new Date(ms);
@@ -117,3 +175,4 @@ function getWeather() {
 
 // Call getWeather function
 getWeather();
+
