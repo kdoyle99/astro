@@ -161,7 +161,7 @@ function getWeather() {
 
 	// Build url string to call API
 	let apiKeyWeather = "d5019f52f2aed7178c00da6f7c77cde3";
-	let imgUrlStart = "http://openweathermap.org/img/wn/";
+	let imgUrlStart = "https://openweathermap.org/img/wn/";
 	let imgUrlEnd = "@2x.png";
 	let endpoint = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=imperial&appid=${apiKeyWeather}`;
 
@@ -173,7 +173,7 @@ function getWeather() {
 		// For successful response, display weather
 		if(this.status == 200){
 			// Get sunset time
-			ms = this.response.sys.sunset * 1000;
+			let ms = this.response.sys.sunset * 1000;
 			let set = new Date(ms);
 			
 			// Build url for weather icon/image
@@ -216,6 +216,7 @@ function getWeather() {
 			// Display error message if API data fails to load
 			weatherSection.innerHTML = "There was an issue with your call to the Open Weather API. Check the endopint and try again.";
 		}
+		console.log(this.response);
 	});
 	
 	// Expected response type
