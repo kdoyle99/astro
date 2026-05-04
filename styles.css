@@ -189,6 +189,10 @@ img {
     height: 430px;
     text-align: center;
 }
+#weatherHeading {
+    display: flex;
+    flex-direction: column;
+}
 #weather h2 {
     padding: 30px 0 10px;
 }
@@ -202,14 +206,9 @@ img {
     justify-content: center;
     height: 100;
 }
-#weather div p {
+#weatherTemp p {
     color: var(--off-white);
     padding: 30px 0 20px;
-}
-dl {
-    display: grid;
-    grid-template-columns: 1.25fr 1fr;
-    column-gap: 10px;
 }
 dt {
     text-align: right;
@@ -217,6 +216,7 @@ dt {
 }
 dd {
     text-align: left;
+    padding-left: 10px;
 }
 #info {
     background-color: var(--off-white);
@@ -468,6 +468,42 @@ label svg {
         width: 200px;
         margin: 0 auto;
     }
+    #weather {
+        display: grid;
+        grid-template-areas:
+            "weatherHeading weatherTemp"
+            "dl dl";
+        align-items: center;
+        padding: 0 40px;
+        height: auto;
+    }
+    #weatherHeading {
+        grid-area: weatherHeading;
+    }
+    #weatherTemp {
+        grid-area: weatherTemp;
+        padding-top: 20px;
+    }
+    #weather dl {
+        grid-area: dl;
+        display: grid;
+        grid-template-areas:
+            "definition1 definition2"
+            "definition4 definition3";
+        padding: 10px 0 30px;
+    }
+    #definition1 {
+        grid-area: definition1;
+    }
+    #definition2 {
+        grid-area: definition2;
+    }
+    #definition3 {
+        grid-area: definition3;
+    }
+    #definition4 {
+        grid-area: definition4;
+    }
     #info {
         display: grid;
         grid-template-columns: 300px 60px 300px;
@@ -550,12 +586,20 @@ label svg {
         margin-right: 40px;
     }
     #weather {
+        display: block;
         grid-area: weather;
         width: 390px;
         margin-left: -95px;
         margin-top: 35px;
         border-radius: 10px;
         padding: 3px 0;
+        height: 430px;
+    }
+    #weatherTemp {
+        padding-top: 0;
+    }
+    #weather dl {
+        display: block;
     }
     #info {
         grid-area: info;

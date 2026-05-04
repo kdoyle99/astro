@@ -1,4 +1,7 @@
-// AJAX/API & SLIDESHOW/CAROUSEL
+// AJAX/API & SLIDESHOW/CAROUSEL & DIALOG WIDGET
+// I combined three of the JS requirements into one function. 
+// The Now Playing section utilizes TMDB API, JQuery Slick (image slideshow/carousel), and JQuery Dialog. 
+// Site is also fully responsive so feel free to see how this section displays differently on other screen sizes.
 // CURRENT DATE VARIABLES
 let today = new Date();
 let month = today.toLocaleString('default', { month: 'short' });
@@ -137,6 +140,7 @@ $(function() {
 	});
 });
 
+// Bonus use of OpenWeatherMap API, so users can see the current weather for the drive-in theater's area
 // WEATHER INFO
 function getWeather() {
 	// Grab #weather section to display weather information
@@ -175,22 +179,32 @@ function getWeather() {
 			
 			// Append to output string
 			output += 
-				`<h2>Come Rain or Shine</h2>
-				<h3>Weather for Today, ${dateFormat}</h3>
-				<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="#0d4c73" d="M0 188.6C0 84.4 86 0 192 0S384 84.4 384 188.6c0 119.3-120.2 262.3-170.4 316.8-11.8 12.8-31.5 12.8-43.3 0-50.2-54.5-170.4-197.5-170.4-316.8zM192 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128z"/></svg>Orlando, FL</p>
-				<div>
+				`<div id="weatherHeading">
+					<h2>Come Rain or Shine</h2>
+					<h3>Weather for Today, ${dateFormat}</h3>
+					<p><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="#0d4c73" d="M0 188.6C0 84.4 86 0 192 0S384 84.4 384 188.6c0 119.3-120.2 262.3-170.4 316.8-11.8 12.8-31.5 12.8-43.3 0-50.2-54.5-170.4-197.5-170.4-316.8zM192 256a64 64 0 1 0 0-128 64 64 0 1 0 0 128z"/></svg>Orlando, FL</p>
+				</div>
+				<div id="weatherTemp">
 					<img src="${iconUrl}" alt="${this.response.weather[0].main}">
 					<p id="temp">${Math.round(this.response.main.temp)}&deg;</p>
 				</div>
 				<dl>
-					<dt>Current Conditions:</dt>
-					<dd>${this.response.weather[0].description}</dd>
-					<dt>Local Max Temp:</dt>
-					<dd>${Math.round(this.response.main.temp_max)}&deg;</dd>
-					<dt>Local Min Temp:</dt>
-					<dd>${Math.round(this.response.main.temp_min)}&deg;</dd>
-					<dt>Sunset:</dt>
-					<dd>${new Intl.DateTimeFormat('en-US', {timeStyle: 'short' }).format(set)}</dd>
+					<div class="dl-container" id="definition1">
+						<dt>Current Conditions:</dt>
+						<dd>${this.response.weather[0].description}</dd>
+					</div>
+					<div class="dl-container" id="definition2">
+						<dt>Local Max Temp:</dt>
+						<dd>${Math.round(this.response.main.temp_max)}&deg;</dd>
+					</div>
+					<div class="dl-container" id="definition3">
+						<dt>Local Min Temp:</dt>
+						<dd>${Math.round(this.response.main.temp_min)}&deg;</dd>
+					</div>
+					<div class="dl-container" id="definition4">
+						<dt>Sunset:</dt>
+						<dd>${new Intl.DateTimeFormat('en-US', {timeStyle: 'short' }).format(set)}</dd>
+					</div>
 				</dl>`;
 
 			// Add the output string to #weather section to display weather data
@@ -215,6 +229,7 @@ function getWeather() {
 getWeather();
 
 // WEB STORAGE
+// Event listener that stores the user's email locally and will display it back to the user, and welcomes them back on reload
 document.addEventListener("DOMContentLoaded", function() {
 	let form = document.querySelector("#signUp form");
 	let emailInput = document.getElementById("email");
