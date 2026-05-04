@@ -1,6 +1,9 @@
+// JS BY KATELYN HERNANDEZ
+"use strict";
+
 // AJAX/API & SLIDESHOW/CAROUSEL & DIALOG WIDGET
 // I combined three of the JS requirements into one function. 
-// The Now Playing section utilizes TMDB API, JQuery Slick (image slideshow/carousel), and JQuery Dialog. 
+// The Now Playing section utilizes TMDB API, jQuery Slick (image slideshow/carousel), and jQuery Dialog. 
 // Site is also fully responsive so feel free to see how this section displays differently on other screen sizes.
 // CURRENT DATE VARIABLES
 let today = new Date();

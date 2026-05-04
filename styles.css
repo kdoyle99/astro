@@ -1,3 +1,5 @@
+/* CSS BY KATELYN HERNANDEZ */
+
 /* CSS RESET */
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -204,7 +206,6 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100;
 }
 #weatherTemp p {
     color: var(--off-white);
