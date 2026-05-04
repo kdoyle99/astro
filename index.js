@@ -48,8 +48,9 @@ $(function() {
 			// Set movie showtime
 			let showtime = "9:00 PM";
 
+			// Append to HTML
 			html += `
-				<div class="movie subsec">
+				<div class="movie subsec" data-title="${data.results[i].title}" data-overview="${data.results[i].overview}">
 					<img src="${imgUrl}${data.results[i].poster_path}" alt="${data.results[i].title}">
 					<p class="movie-date">${movieDateFormat}</p>
 					<p class="movie-time">${showtime}</p>
@@ -95,8 +96,45 @@ $(function() {
 					}
 				}
 			]
-   		 });
+   		});
+
+		// Dialog widget when hovering over movie poster
+		$(document).on("mouseenter", "#nowPlaying .movie img", function () {
+			let $movie = $(this).closest(".movie");
+			
+			// Get movie title and overview data
+			let title = $movie.data("title");
+			let overview = $movie.data("overview");
+			$("#movieDialog").dialog("option", "title", title);
+			$("#movieOverview").text(overview);
+
+			// Initialize dialog
+			$dialog.dialog("open");
+
+			// Position dialog underneath hovered image
+			$dialog.dialog("widget").position({
+				my: "center top",
+				at: "center bottom",
+				of: this,
+				collision: "fit"
+			});
+		});
+
+		// Close dialog when mouse is no longer hovering over image
+		$(document).on("mouseleave", "#nowPlaying .movie img", function () {
+			$dialog.dialog("close");
+		});
     });
+
+	// Manage $dialog widget
+	let $dialog = $("#movieDialog").dialog({
+		autoOpen: false,
+		dialogClass: "no-close",
+		modal: false,
+		resizable: false,
+		draggable: false,
+		width: 300
+	});
 });
 
 // WEATHER INFO
@@ -176,3 +214,53 @@ function getWeather() {
 // Call getWeather function
 getWeather();
 
+// WEB STORAGE
+document.addEventListener("DOMContentLoaded", function() {
+	let form = document.querySelector("#signUp form");
+	let emailInput = document.getElementById("email");
+	let confirmation = document.getElementById("confirmation");
+
+	// Event listener for form submission
+	form.addEventListener("submit", function(e) {
+		// Prevent default form submission
+		e.preventDefault();
+
+		// Get email input value
+		let email = emailInput.value;
+
+		// Save email to local storage
+		localStorage.setItem("userEmail", email);
+
+		// Display confirmation message
+		confirmation.textContent = "Thanks! We'll send updates to ";
+
+		// Add span element to email so it stands apart
+		let span = document.createElement("span");
+		span.textContent = email;
+		span.classList.add("emailHighlight");
+
+		// Add email span to confirmation message
+		confirmation.appendChild(span);
+
+		// Clear email input after submitting
+		emailInput.value = "";
+	});
+
+	// Check if email exists already when page loads
+	window.addEventListener("load", function() {
+		let savedEmail = localStorage.getItem("userEmail");
+
+		// Display message to welcome back user
+		if (savedEmail) {
+			confirmation.textContent = "Welcome back! You're subscribed with ";
+
+			// Add span element to email so it stands apart
+			let span = document.createElement("span");
+			span.textContent = savedEmail;
+			span.classList.add("emailHighlight");
+
+			// Add email span to confirmation message
+			confirmation.appendChild(span);
+		}
+	});
+});

@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="styles.css">
         <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lobster&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css">
         <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
         <script src="index.js" defer></script>
@@ -41,8 +43,9 @@
             <section id="movies">
                 <div class="border">
                     <h2>Now Playing</h2>
-                    <div id="nowPlaying">
-
+                    <div id="nowPlaying"></div>
+                    <div id="movieDialog" title="Movie Details">
+                        <p id="movieOverview"></p>
                     </div>
                 </div>
             </section>
@@ -73,16 +76,17 @@
             </section>
         </main>
         <footer id="about">
-            <section id="form">
+            <section id="signUp">
                 <h3>Join Our Email List</h3>
                 <p>Be the first to know about new movies & special events!</p>
                 <form method="POST">
-                    <input type="email" id="email" placeholder="Enter your email">
+                    <input type="email" id="email" placeholder="Enter your email" required>
                     <button type="submit" class="submitBtn">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" class="iconBtn"><!--!Font Awesome Free v7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2026 Fonticons, Inc.--><path fill="#efe6dd" d="M566.6 342.6C579.1 330.1 579.1 309.8 566.6 297.3L406.6 137.3C394.1 124.8 373.8 124.8 361.3 137.3C348.8 149.8 348.8 170.1 361.3 182.6L466.7 288L96 288C78.3 288 64 302.3 64 320C64 337.7 78.3 352 96 352L466.7 352L361.3 457.4C348.8 469.9 348.8 490.2 361.3 502.7C373.8 515.2 394.1 515.2 406.6 502.7L566.6 342.7z"/></svg>
                     </button>
                 </form>
             </section>
+            <p id="confirmation"></p>
             <section id="social">
                 <h3>Follow Us</h3>
                 <a href="">
